@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href='{% static "/login.css" %}' type="text/css">
+
+<section class="forms-section">
+  <h1 class="section-title">Claudius LI</h1>
+  <div class="forms">
+    <div class="form-wrapper">
+      <button type="button" class="switcher switcher-login">
+        <a href="{% url 'login' %}">Login</a>
+        <span class="underline"></span>
+      </button>
+        
+      <form class="form form-login" method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <fieldset>          
+          <div class="input-block">
+            <label for="username">Username</label>
+            <label for="username">
+            <i class="fas fa-user"></i>
+        </label>
+        <input type="text" name="username" placeholder="Username" id="username" required>
+          </div>
+          <div class="input-block">
+            <label for="login-password">Password</label>
+            <label for="password">
+            <i class="fas fa-lock"></i>
+        </label>
+        <input type="password" name="password" placeholder="Password" id="password" required>
+          </div>
+        <a href="{% url 'signup' %}">Create Account</a>
+        <a href="{% url 'password_reset' %}">Lost password?</a>
+        </fieldset>
+        <input type="submit" value="Login"/>
+        <input type="hidden" name="next" value="{{ next }}"/>
+      </form>
+    </div>
+      
+      
+    <div class="form-wrapper is-active">
+      <button type="button" class="switcher switcher-signup">
+        <a href="{% url 'signup' %}">Sign Up</a>
+        <span class="underline"></span>
+      </button>
+      <form class="form form-signup" method="post" action="{% url 'signup' %}">
+        {% csrf_token %}
+        <fieldset>
+            <div class="input-block">
+            <label for="username">Username</label>
+            <label for="username">
+            <i class="fas fa-user"></i>
+            </label>
+        <input type="text" name="username" placeholder="Username" id="username" required>
+          </div>
+            
+          <div class="input-block">
+            <label for="first_name">First Name</label>
+            <label for="first_name">
+            <i class="fa fa-address-book" aria-hidden="true"></i>           
+        </label>
+        <input type="text" name="first_name" placeholder="John" id="first_name" required>
+          </div>            
+            
+          
+          <div class="input-block">
+            <label for="last_name">Last Name</label>
+            <label for="last_name">
+             <i class="fa fa-address-card" aria-hidden="true"></i>
+        </label>
+        <input type="text" name="last_name" placeholder="Smith" id="last_name" required>
+          </div>
+            
+          <div class="input-block">
+            <label for="email">Email</label>
+            <label for="email">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+        </label>
+        <input type="email" name="email" placeholder="Jsmith@gmail.com" id="email" required>
+          </div>
+            
+          <div class="input-block">
+            <label for="password1">Password</label>
+            <label for="password1">
+            <i class="fas fa-lock"></i>
+        </label>
+        <input type="password" name="password1" placeholder="*****" id="password1" required>
+          </div>
+            
+            
+          <div class="input-block">
+            <label for="password2">Confirm Password</label>
+            <label for="password2">
+            <i class="fas fa-lock"></i>
+        </label>
+        <input type="password" name="password2" placeholder="*****" id="password2" required>
+          </div>
+        </fieldset>
+        <input type="submit" value="Sign Up">
+    </form>
+      
+    </div>
+    </div>
+   
+</section>
+
+<script>
+const switchers = [...document.querySelectorAll('.switcher')]
+
+switchers.forEach(item => {
+	item.addEventListener('click', function() {
+		switchers.forEach(item => item.parentElement.classList.remove('is-active'))
+		this.parentElement.classList.add('is-active')
+	})
+})
+    
+    
+</script>
+
+
+{% endblock %}

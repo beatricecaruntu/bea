@@ -1,0 +1,13 @@
+<html>
+<head></head>
+<body>
+<h1>Claudius LI</h1>
+{% if user.is_authenticated %}
+    <a href="{% url 'logout' %}">Logout</a>
+{% endif %}
+{% block content %}
+{% endblock %}
+</body>
+</html>
+
+

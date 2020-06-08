@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href='{% static "/index.css" %}' type="text/css">
+    
+<center>
+<h1>Dashboard</h1>
+</center>
+<a href="{% url 'prediction_survey_index' 1 %}">Click here to make a new case</a>
+
+    
+<div class="card-columns">
+{% for case in object_list %}
+    <div class="card bg-info">
+      <div class="card-body text-center">
+        <h4 class="card-title">{{ case.name }}</h4>
+        <p class="card-text">Case ID: {{ case.id }}</p>
+        <p class="card-text">Age: {{ case.age }}</p>
+        <p class="card-text">Hospital Bill: {{ case.hospital_bill }}</p>
+        <a href="{% url 'prediction_survey_index' 1 case.id %}" class="btn btn-primary">Edit</a>
+      </div>
+    </div>    
+
+{% endfor %}    
+</div>
+{% endblock %}

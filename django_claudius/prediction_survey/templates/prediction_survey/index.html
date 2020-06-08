@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Form</h1>
+    <a href="{% url 'dashboard' %}">Click here to go back to dashboard</a><br/><br/>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="fieldWrapper">
+                {{ field.label_tag }} {{ field }}
+                {% if field.help_text %}
+                    <p class="help">{{ field.help_text|safe }}</p>
+                {% endif %}
+                <p class="error">{{ field.errors }}</p>
+            </div>
+        {% endfor %}
+        {% if page_num > 1 %}
+            <input type="button" value="Previous"
+                   onclick="location.href='{% url 'prediction_survey_index' page_num|add:"-1" case_id %}'"/>
+        {% endif %}
+        <input type="submit" value="Next"/>
+
+    </form>
+
+{% endblock %}
+
+
